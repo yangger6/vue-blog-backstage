@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel ./app.js -d lib && babel ./router -d ./lib/router && babel ./controller -d ./lib/controller && babel ./mongo -d ./lib/mongo",
+    "con": "babel ./controller -d ./lib/controller",
     "dev": "npm run build && node ./lib/app.js"
   },
   "repository": {
@@ -33,9 +34,11 @@
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
     "koa": "^2.2.0",
     "koa-router": "^7.2.0",
-    "mongoose": "^4.10.5"
+    "mongoose": "^4.10.5",
+    "schema-object": "^4.0.11"
   },
   "dependencies": {
     "babel-plugin-syntax-decorators": "^6.13.0",
