@@ -3,17 +3,43 @@
  */
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-const metaSchema = new Schema({
-  votes: {type: Number, default: 0},
-  favs: {type: Number, default: 0}
+const metaSchema = new Schema({ // 点赞与收藏
+  votes: {
+    type: Number,
+    default: 0
+  },
+  favs: {
+    type: Number,
+    default: 0
+  }
+})
+const comment = new Schema({  // 评论
+  _pid: String, // 可用来相互评论  就是 谁回复了谁
+  comAuthor: String,  //  评论者Id
+  comAuthorName: {
+    type: String,
+    default: '游客狗'
+  },
+  comAuthorHead: {
+    type: String,
+    default: 'http://image.yangger.cn/tourist.png'
+  },
+  comBody: String,
+  comDate: {
+    type: Date,
+    default: Date.now
+  }
 })
 const blogSchema = new Schema({
   title: String,  //  标题
   author: String, //  作者
   body: String, //  内容
   markdown: String, //  markdown 内容
-  comments: [{ body: String, date: {type: Date, default: Date.now} }], // 评论
-  date: { type: Date, default: Date.now },  // 时间
+  comments: [comment], // 评论
+  date: {
+    type: Date,
+    default: Date.now
+  },  // 时间
   hidden: Boolean,  // 是否隐藏
   tags: [String], // 标签
   meta: metaSchema
@@ -26,5 +52,5 @@ blogSchema.statics.findOneByKey = async function (key, value) {  // 这里用fun
   let result = this.findOne({ [key]: new RegExp(value, 'i') })
   return result
 }
-const Blog = mongoose.model('Blog', blogSchema)
+const Blog = mongoose.model('Post', blogSchema)
 export default Blog
