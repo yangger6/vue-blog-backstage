@@ -32,3 +32,13 @@ export const update = async (ctx, next) => {
   ctx.parameters = obj
   await next()
 }
+export const select = async (ctx, next) => {
+  const data = ctx.request.body
+  let obj = new schema.BlogSelect(data)
+  if (obj.isErrors()) {
+    ctx.body = obj.getErrors()
+    return
+  }
+  ctx.parameters = obj
+  await next()
+}

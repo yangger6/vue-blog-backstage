@@ -8,7 +8,8 @@ export const add = async (ctx, next) => {
     blog.save()
     ctx.body = blog
   } catch (e) {
-    ctx.body = e
+    console.log(e)
+    ctx.body = 'mongo server is Error occurred'
   }
   await next()
 }
@@ -18,7 +19,23 @@ export const remove = async (ctx, next) => {
     await Blog.remove({ _id: { $in: removeIds } })
     ctx.body = 'success'
   } catch (e) {
-    ctx.body = e
+    console.log(e)
+    ctx.body = 'mongo server is Error occurred'
+  }
+  await next()
+}
+export const select = async (ctx, next) => {
+  try {
+    if (ctx.parameters) {
+      const selectId = ctx.parameters._id
+      console.log(selectId)
+    } else {
+      console.log(2)
+      ctx.body = await Blog.find({})
+    }
+  } catch (e) {
+    console.log(e)
+    ctx.body = 'mongo server is Error occurred'
   }
   await next()
 }
@@ -40,7 +57,8 @@ export const update = async (ctx, next) => {
     await Blog.findByIdAndUpdate(updateId, {$set: newData})
     ctx.body = 'success'
   } catch (e) {
-    ctx.body = e
+    console.log(e)
+    ctx.body = 'mongo server is Error occurred'
   }
   await next()
 }

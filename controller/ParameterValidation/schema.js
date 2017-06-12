@@ -27,6 +27,9 @@ export const BlogAdd = new SchemaObject({
 export const BlogRemove = new SchemaObject({
   _id: [String]
 })
+export const BlogSelect = new SchemaObject({
+  _id: String
+})
 export const BlogUpdate = BlogAdd.extend({
   _id: NotEmptyString
 })
