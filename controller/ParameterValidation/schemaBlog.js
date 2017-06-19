@@ -2,6 +2,11 @@
  * Created by yangger on 2017/6/8.
  */
 import * as schema from './schema'
+/**
+ *
+ * @param ctx 传入的参数
+ * @param next 下一个函数
+ */
 export const add = async (ctx, next) => {
   const data = ctx.request.body
   let obj = new schema.BlogAdd(data)

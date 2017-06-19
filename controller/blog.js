@@ -2,6 +2,11 @@
  * Created by yangger on 2017/6/7.
  */
 import Blog from '../mongo/model/modelBlog'
+/**
+ *
+ * @param ctx 传入的参数
+ * @param next 下一个函数
+ */
 export const add = async (ctx, next) => {
   try {
     const blog = new Blog(ctx.parameters)

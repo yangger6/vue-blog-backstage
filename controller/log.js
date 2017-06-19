@@ -2,6 +2,11 @@
  * Created by yangger on 2017/6/19.
  */
 import Log from '../mongo/model/modelLog'
+/**
+ *
+ * @param ctx 传入的参数
+ * @param next  下一个函数
+ */
 export const add = async (ctx, next) => {
   try {
     let date = new Date().toLocaleString().match(/[0-9]+-[0-9]+-[0-9]+/)[0]   // 只取天数

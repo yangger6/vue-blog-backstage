@@ -21,6 +21,12 @@ const userSchema = new Schema({
     default: 0
   }
 })
+/**
+ *
+ * @param key 查询的键名
+ * @param value 查询的值
+ * @returns {Query|*} 返回一个对象
+ */
 userSchema.statics.findOneByKey = async function (key, value) {  // 这里用function （）{}  如果用（）=》{} 作用域会炸
   let result = this.findOne({ [key]: new RegExp(value, 'i') })
   return result

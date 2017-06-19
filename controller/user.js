@@ -3,6 +3,11 @@
  */
 import User from '../mongo/model/modelUser'
 import crypto from 'crypto'
+/**
+ *
+ * @param ctx 传入的参数
+ * @param next 下一个函数
+ */
 export const register = async (ctx, next) => {
   try {
     const user = new User(ctx.parameters)

@@ -4,10 +4,10 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const logSchema = new Schema({
-  date: String,
+  date: String, //  log时间
   data: [{
-    value: String,
-    date: {
+    value: String,  // log内容
+    date: { // log内容时间
       type: Date,
       default: Date.now
     }
