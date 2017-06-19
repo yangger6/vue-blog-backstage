@@ -28,7 +28,8 @@ export const BlogRemove = new SchemaObject({
   _id: [String]
 })
 export const BlogSelect = new SchemaObject({
-  _id: String
+  key: NotEmptyString,
+  value: NotEmptyString
 })
 export const BlogUpdate = BlogAdd.extend({
   _id: NotEmptyString
@@ -43,6 +44,7 @@ const password = {
   minLength: 6,
   maxLength: 20
 }
+// 用户验证
 export const User = new SchemaObject({
   userName: userName,
   userNiceName: userName,
@@ -61,4 +63,11 @@ export const UserRemove = new SchemaObject({
 })
 export const UserUpdate = User.extend({
   _id: [String]
+})
+// 日志验证
+export const Log = new SchemaObject({
+  data: [{value: NotEmptyString}]
+})
+export const LogRemove = Log.extend({
+  _id: NotEmptyString
 })

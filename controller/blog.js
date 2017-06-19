@@ -26,13 +26,17 @@ export const remove = async (ctx, next) => {
 }
 export const select = async (ctx, next) => {
   try {
-    if (ctx.parameters) {
-      const selectId = ctx.parameters._id
-      console.log(selectId)
+    const query = ctx.parameters.key  //  需要查询的键名
+    const fields = ctx.parameters.value  //  需要查询的内容
+    var data
+    if (query === 'BlogAll') {
+      data = await Blog.find({}, fields)
+    } else if (query === 'id') {
+      data = await Blog.findById(fields)
     } else {
-      console.log(2)
-      ctx.body = await Blog.find({})
+      data = await Blog.findByKey(query, fields)
     }
+    ctx.body = data
   } catch (e) {
     console.log(e)
     ctx.body = 'mongo server is Error occurred'

@@ -18,7 +18,7 @@ const comment = new Schema({  // 评论
   comAuthor: String,  //  评论者Id
   comAuthorName: {
     type: String,
-    default: '游客狗'
+    default: '游客'
   },
   comAuthorHead: {
     type: String,
