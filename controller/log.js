@@ -14,14 +14,22 @@ export const add = async (ctx, next) => {
     if (isTodayLog) {
       isTodayLog.data = ctx.parameters.data
       isTodayLog.save()
-      ctx.body = isTodayLog
+      let result = {
+        data: isTodayLog,
+        msg: 'success'
+      }
+      ctx.body = result
     } else {
       const log = new Log({
         date: date,
         data: ctx.parameters.data
       })
       log.save()
-      ctx.body = log
+      let result = {
+        data: log,
+        msg: 'success'
+      }
+      ctx.body = result
     }
   } catch (e) {
     console.log(e)
