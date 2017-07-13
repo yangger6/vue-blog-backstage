@@ -9,6 +9,9 @@ export const login = async (ctx, next) => {
     ctx.body = obj.getErrors()
     return
   }
+  console.log(`is error: ${obj.isErrors()}`)
+  console.log(`error is : ${obj.getErrors()}`)
+  console.log(`obj is :${obj}`)
   ctx.parameters = obj
   await next()
 }

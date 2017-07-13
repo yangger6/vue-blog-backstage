@@ -11,7 +11,11 @@ export const add = async (ctx, next) => {
   try {
     const blog = new Blog(ctx.parameters)
     blog.save()
-    ctx.body = blog
+    let result = {
+      msg: 'success',
+      data: blog
+    }
+    ctx.body = result
   } catch (e) {
     console.log(e)
     ctx.body = 'mongo server is Error occurred'
@@ -64,7 +68,11 @@ export const update = async (ctx, next) => {
       'meta': ctx.parameters.meta
     }
     await Blog.findByIdAndUpdate(updateId, {$set: newData})
-    ctx.body = 'success'
+    let blog = {
+      msg: 'success'
+    }
+    blog.data = await Blog.findById(updateId)
+    ctx.body = blog
   } catch (e) {
     console.log(e)
     ctx.body = 'mongo server is Error occurred'

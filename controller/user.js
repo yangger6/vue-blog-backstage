@@ -25,14 +25,18 @@ export const login = async (ctx, next) => {
     const user = await User.findOneByKey('userName', ctx.parameters.userName) || await User.findOneByKey('email', ctx.parameters.userName)
     if (user) {
       if (password === user.password) {
-        console.log(user)
-        console.log(user.lastLogin)
         user.save()
-        ctx.body = 'success'
+        let result = {
+          msg: 'success',
+          data: user
+        }
+        ctx.body = result
       } else {
-        ctx.body = '请检查你的密码是否正确'
-        ctx.body += `user:${user.password}`
-        ctx.body += `password:${password}`
+        let result = {
+          msg: 'error',
+          data: '请检查你的密码是否正确'
+        }
+        ctx.body = result
       }
     } else {
       ctx.body = '请检查你的用户名或邮箱是否正确'

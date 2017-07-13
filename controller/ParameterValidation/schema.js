@@ -59,8 +59,8 @@ export const BlogUpdate = BlogAdd.extend({
  */
 const userName = {
   type: String,
-  minLength: 6,
-  maxLength: 20
+  minLength: [6, '用户名不得小于6位'],
+  maxLength: [20, '用户名不得大于20位']
 }
 /**
  *
@@ -68,8 +68,8 @@ const userName = {
  */
 const password = {
   type: String,
-  minLength: 6,
-  maxLength: 20
+  minLength: [6, '密码不得小于6位'],
+  maxLength: [20, '密码名不得大于20位']
 }
 // 用户验证
 export const User = new SchemaObject({
