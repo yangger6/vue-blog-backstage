@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel ./app.js -d lib && babel ./router -d ./lib/router && babel ./controller -d ./lib/controller && babel ./mongo -d ./lib/mongo",
-    "con": "babel ./controller -d ./lib/controller",
-    "dev": "rm -R ./lib && npm run build && node ./lib/app.js"
+    "build": "rm -R ./lib && babel ./src -d ./lib",
+    "dev": "npm run build && node index.js"
   },
   "repository": {
     "type": "git",
@@ -39,11 +38,12 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "bluebird": "^3.5.0",
     "crypto": "0.0.3",
     "koa": "^2.2.0",
     "koa-body": "^2.1.0",
     "koa-router": "^7.2.0",
-    "mongoose": "^4.10.5",
+    "mongoose": "^4.11.4",
     "schema-object": "^4.0.11"
   }
 }
