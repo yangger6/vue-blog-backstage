@@ -39,7 +39,7 @@ export const select = async (ctx, next) => {
     const fields = ctx.parameters.value  //  需要查询的内容
     var data
     if (query === 'BlogAll') {
-      data = await Blog.find({}, fields)
+      data = await Blog.find({}, fields).sort({'_id': -1})
     } else if (query === 'id') {
       data = await Blog.findById(fields)
     } else {
