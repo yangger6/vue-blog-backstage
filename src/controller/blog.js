@@ -10,7 +10,7 @@ import Blog from '../mongo/model/modelBlog'
 export const add = async (ctx, next) => {
   try {
     const blog = new Blog(ctx.parameters)
-    blog.save()
+    await blog.save()
     let result = {
       msg: 'success',
       data: blog
@@ -42,6 +42,8 @@ export const select = async (ctx, next) => {
       data = await Blog.find({}, fields).sort({'_id': -1})
     } else if (query === 'id') {
       data = await Blog.findById(fields)
+    } else if (query === 'blogId') {
+      data = await Blog.findOne({blogId: fields})
     } else {
       data = await Blog.findByKey(query, fields)
     }

@@ -2,6 +2,7 @@
  * Created by yangger on 2017/6/7.
  */
 import mongoose from 'mongoose'
+import Counter from './modelCounter'
 const Schema = mongoose.Schema
 const metaSchema = new Schema({ // 点赞与收藏
   votes: {
@@ -31,6 +32,7 @@ const comment = new Schema({  // 评论
   }
 })
 const blogSchema = new Schema({
+  blogId: {type: Number, default: 0}, // 博客id
   title: String,  //  标题
   author: String, //  作者
   body: String, //  内容
@@ -64,5 +66,18 @@ blogSchema.statics.findOneByKey = async function (key, value) {  // 这里用fun
   let result = this.findOne({ [key]: new RegExp(value, 'i') })
   return result
 }
+blogSchema.pre('save', async function (next) {
+  try {
+    var doc = this
+    const result = await Counter.findByIdAndUpdate({_id: 'blogId'}, {$inc: {seq: 1}}, {new: true, upsert: true})
+    console.log(result)
+    doc.blogId = result.seq
+    console.log(doc)
+    await next()
+  } catch (e) {
+    console.error('counter error-> : ' + e)
+    throw e
+  }
+})
 const Blog = mongoose.model('Post', blogSchema)
 export default Blog
