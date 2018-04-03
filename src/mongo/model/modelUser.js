@@ -5,20 +5,16 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const userSchema = new Schema({
   userName: String, // 用户名
-  userNiceName: String, // 昵称
   password: String, // 密码
   email: String,  // 邮箱
-  lastLogin: {  // 最后登录时间
+  date: {  // 创建时间
     type: Date,
     default: Date.now
   },
-  registerTime: { // 注册时间
-    type: Date,
-    default: Date.now
-  },
-  userLevel: {  // 用户等级
-    type: Number,
-    default: 0
+  cookies: {  // 登录cookies
+    cookie: String,
+    create_date: Date,
+    expiry_date: Date
   }
 })
 /**

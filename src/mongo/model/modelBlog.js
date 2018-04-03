@@ -8,27 +8,6 @@ const metaSchema = new Schema({ // 点赞与收藏
   votes: {
     type: Number,
     default: 0
-  },
-  favs: {
-    type: Number,
-    default: 0
-  }
-})
-const comment = new Schema({  // 评论
-  _pid: String, // 可用来相互评论  就是 谁回复了谁
-  comAuthor: String,  //  评论者Id
-  comAuthorName: {  // 评论者名字 如果没传入参数即为游客
-    type: String,
-    default: '游客'
-  },
-  comAuthorHead: {  // 评论者的头像 默认为游客
-    type: String,
-    default: 'http://image.yangger.cn/tourist.png'
-  },
-  comBody: String,  // 评论的内荣
-  comDate: {  // 评论的时间
-    type: Date,
-    default: Date.now
   }
 })
 const blogSchema = new Schema({
@@ -37,11 +16,10 @@ const blogSchema = new Schema({
   author: String, //  作者
   body: String, //  内容
   markdown: String, //  markdown 内容
-  comments: [comment], // 评论
   date: {
     type: Date,
     default: Date.now
-  },  // 时间
+  },  // 创建时间
   hidden: Boolean,  // 是否隐藏
   tags: [String], // 标签
   meta: metaSchema

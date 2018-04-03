@@ -6,7 +6,7 @@ import blog from './routerBlog'
 import user from './routerUser'
 import log from './routerLog'
 const router = new Router()
-router.use('/blog', blog.routes())
-router.use('/user', user.routes())
-router.use('/log', log.routes())
+// router.use('/blogs', blog.routes())
+router.use('/users', user.routes())
+// router.use('/logs', log.routes())
 export default router

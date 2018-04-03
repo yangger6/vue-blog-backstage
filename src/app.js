@@ -5,11 +5,13 @@ import '../node_modules/babel-core/register'  // babel转码后报错提示
 import 'babel-polyfill' // babel转码后报错提示
 import Koa from 'koa'
 import KoaBody from 'koa-body'
-import router from './router/index'
+import router from './router'
 require('./mongo/index.js')
 const app = new Koa()
 const koaBody = new KoaBody()
 app.use(koaBody)
 app.use(router.routes())
     .use(router.allowedMethods())
-app.listen(3000)
+app.listen(3001, () => {
+  console.log(`server listen 3001 port`)
+})
