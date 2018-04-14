@@ -2,7 +2,7 @@
  * Created by yangger on 2017/6/9.
  */
 import Router from 'koa-router'
-import { UserController } from './../controller/user'
+import UserController from './../controller/user'
 const user = new UserController()
 const router = new Router()
 // const user = new UserController()

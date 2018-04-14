@@ -45,11 +45,11 @@
     "bson": "^1.0.4",
     "crypto": "0.0.3",
     "eslint-plugin-standard": "^3.0.1",
+    "joi": "^13.1.2",
     "koa": "^2.2.0",
     "koa-body": "^2.3.0",
     "koa-router": "^7.2.0",
     "mongoose": "^4.11.4",
-    "mpath": "^0.3.0",
-    "schema-object": "^4.0.11"
+    "mpath": "^0.3.0"
   }
 }

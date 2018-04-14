@@ -1,22 +1,23 @@
 /**
  * Created by yangger on 2017/6/9.
  */
-// import User from '../mongo/model/modelUser'
-// import crypto from 'crypto'
 import ServiceUser from '../service/serviceUser'
 import httpCode from "./httpCode";
-class UserController {
-  constructor () {
-  }
+export default class UserController {
   async register (ctx, next) {
     const service = new ServiceUser()
-    await service.register(ctx.request.body)
+    ctx.body = await service.register(ctx.request.body)
     ctx.status = httpCode.CREATED
-    ctx.body = 'success'
+    await next()
+  }
+  async login (ctx, next) {
+    const service = new ServiceUser()
+    ctx.body = await service.login(ctx.request.body)
+    ctx.status = httpCode.CREATED
+
     await next()
   }
 }
-export { UserController }
 // /**
 //  *
 //  * @param ctx 传入的参数
